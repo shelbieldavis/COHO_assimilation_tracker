@@ -1,4 +1,10 @@
 import streamlit as st
+
+st.set_page_config(
+    page_title="Assimilation Tracker",  # <- this sets the browser tab title
+    page_icon="📋",             # <- optional emoji icon for the tab
+    layout="wide",              # <- full width layout
+)
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import pandas as pd
