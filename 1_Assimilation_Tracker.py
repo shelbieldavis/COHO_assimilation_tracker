@@ -5,6 +5,13 @@ import pandas as pd
 import json
 import matplotlib.pyplot as plt
 
+st.set_page_config(
+    page_title="Assimilation Tracker",  # <- this sets the browser tab title
+    page_icon="📋",             # <- optional emoji icon for the tab
+    layout="wide",              # <- full width layout
+)
+
+
 # --- Helper to render a pie chart ---
 def render_pie_chart(checked_count, total_count, title):
     fig, ax = plt.subplots(figsize=(1.5, 1.5))
