@@ -39,17 +39,25 @@ df = load_data()
 st.title("COHO Assimilation Tracker")
 # Load base64 logo (once)
 with open("images/logo_base64.txt") as f:
-    base64_logo = f.read()
-
-# Display logo in top-right corner
+    logo_base64 = f.read()
 st.markdown(
     f"""
-    <div style="position: absolute; top: 0.5rem; right: 1rem;">
-        <img src="data:image/png;base64,{base64_logo}" width="100">
+    <style>
+    .logo-container {{
+        position: fixed;
+        top: 0px;
+        right: 0px;
+        padding: 20px;
+        z-index: 100;
+    }}
+    </style>
+    <div class="logo-container">
+        <img src="data:image/png;base64,{logo_base64}" width="150">
     </div>
     """,
     unsafe_allow_html=True
 )
+
 
 
 
