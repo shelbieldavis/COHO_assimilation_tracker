@@ -75,8 +75,20 @@ fig.add_trace(go.Scatter(
 
 # Calculate dynamic y-axis range with padding
 y_min = 0
-y_max = df["Attendees"].max()
+y_max = 80
 y_padding = (y_max - y_min) * 0.1  # 10% padding
+
+# Define max capacity value
+max_capacity = 70  # change this to your actual max capacity
+
+# Add dashed red line for Max Capacity
+fig.add_trace(go.Scatter(
+    x=[df["Date"].min(), df["Date"].max()],
+    y=[max_capacity, max_capacity],
+    mode="lines",
+    line=dict(color="red", width=2, dash="dash"),
+    name="Max Capacity"
+))
 
 fig.update_layout(
     title=dict(
@@ -84,28 +96,44 @@ fig.update_layout(
         y=0.99,
         x=0.5,
         xanchor="center",
-        yanchor="top"
+        yanchor="top",
+        font=dict(size=22)
     ),
-    margin=dict(t=80, b=100),  # Add extra bottom margin for slider + labels
+    margin=dict(t=80, b=100),  # Extra bottom margin for slider
     xaxis=dict(
+        title=dict(text="Date", font=dict(size=18)),
+        tickfont=dict(size=14),
         rangeselector=dict(
-            buttons=list([
+            buttons=[
                 dict(count=7, label="1w", step="day", stepmode="backward"),
                 dict(count=1, label="1m", step="month", stepmode="backward"),
                 dict(step="all")
-            ])
+            ]
         ),
         rangeslider=dict(
             visible=True,
             thickness=0.1
         ),
-        type="date"
+        type="date",
+        showgrid=True,
+        gridwidth=1,
+        gridcolor="lightgray",
+        layer="below traces"
     ),
     yaxis=dict(
-        title="Attendance",
-        range=[y_min - y_padding, y_max + y_padding]
+        title=dict(text="Attendance", font=dict(size=18)),
+        tickfont=dict(size=14),
+        range=[y_min - y_padding, y_max + y_padding],
+        showgrid=False,
+        gridwidth=1,
+        gridcolor="lightgray",
+        layer="below traces"
+    ),
+    legend=dict(
+        font=dict(size=14)
     )
 )
+
 
 
 
