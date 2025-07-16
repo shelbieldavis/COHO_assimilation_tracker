@@ -49,27 +49,25 @@ def load_data():
 
 # --- Load Data ---
 df = load_data()
-st.title("COHO Assimilation Tracker")
 # Load base64 logo (once)
 with open("images/logo_base64.txt") as f:
     logo_base64 = f.read()
-st.markdown(
-    f"""
-    <style>
-    .logo-container {{
-        position: fixed;
-        top: 0px;
-        right: 0px;
-        padding: 20px;
-        z-index: 100;
-    }}
-    </style>
-    <div class="logo-container">
-        <img src="data:image/png;base64,{logo_base64}" width="150">
-    </div>
-    """,
-    unsafe_allow_html=True
-)
+col1, col2 = st.columns([6, 1])
+with col1:
+    st.title("COHO Assimilation Tracker")
+with col2:
+    st.markdown(
+        f"""
+        <div style="text-align: right; padding-top: 0.5rem;">
+            <img src="data:image/png;base64,{logo_base64}" width="120">
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+
+
+
 
 
 
